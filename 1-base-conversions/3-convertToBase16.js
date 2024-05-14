@@ -4,7 +4,58 @@
 
 const convertToBase16 = element => {
   // Your code here
-};
+
+  let str = '';
+  const binaryHex = {
+    '0000': '0',
+    '0001': '1',
+    '0010': '2',
+    '0011': '3',
+    '0100': '4',
+    '0101': '5',
+    '0110': '6',
+    '0111': '7',
+    '1000': '8',
+    '1001': '9',
+    '1010': 'a',
+    '1011': 'b',
+    '1100': 'c',
+    '1101': 'd',
+    '1110': 'e',
+    '1111': 'f'
+  };
+
+  if (typeof element === 'number') element = covertNumToBinary(element);
+
+  for (let i = 2; i < element.length; i += 4) {
+    const binaryStr = element.slice(i, i + 4);
+
+    str = str + binaryHex[binaryStr];
+  }
+
+  return '0x' + str;
+}
+
+const covertNumToBinary = num => {
+  let str = "";
+
+  while(num > 0) {
+
+    if (num % 2 === 0) {
+      str = '0' + str;
+    } else {
+      str = '1' + str;
+    }
+
+    num = Math.floor(num / 2);
+  }
+
+  while (str.length % 4 !== 0) {
+    str = '0' + str;
+  }
+
+  return '0b' + str;
+}
 
 /******************************************************************************/
 
