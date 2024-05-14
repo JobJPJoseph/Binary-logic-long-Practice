@@ -6,10 +6,44 @@ const addZeros = require('../utils/addZeros');
 
 /******************************************************************************/
 
-const asciiTo8bit = str => {
+const asciiTo8bit = str => { // (String not Hex)
   // Your code here
+  // String.charCodeAt(index) convert to the Decimal
+  console.log(str.charCodeAt(0))
+
+  // We are going to covert the into its decimal counterpart.
+  // We will call overtNumToBinary() and withing the call, call String.charCodeAt(index)
+  // We will add the result to an empty string.
+
+  let result = '';
+
+  for (let i = 0; i < str.length; i++ ) {
+    result = result + covertNumToBinary(str.charCodeAt(i));
+  }
+
+  return result;
 };
 
+const covertNumToBinary = num => {
+  let str = "";
+
+  while(num > 0) {
+
+    if (num % 2 === 0) {
+      str = '0' + str;
+    } else {
+      str = '1' + str;
+    }
+
+    num = Math.floor(num / 2);
+  }
+
+  while (str.length % 4 !== 0) {
+    str = '0' + str;
+  }
+
+  return str;
+}
 /******************************************************************************/
 
 console.log(asciiTo8bit('123'));
